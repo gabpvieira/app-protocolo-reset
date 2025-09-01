@@ -10,15 +10,35 @@ Um aplicativo React moderno para gerenciamento do Protocolo Reset da Barriga.
 2. Repositório no GitHub com o código do projeto
 3. Variáveis de ambiente configuradas
 
-### Variáveis de Ambiente
+### ⚠️ IMPORTANTE: Configuração das Variáveis de Ambiente
 
-Configure as seguintes variáveis de ambiente no Vercel:
+**O login só funcionará se as variáveis de ambiente estiverem configuradas corretamente no Vercel.**
 
-```env
-VITE_AIRTABLE_ACCESS_TOKEN=your_airtable_access_token_here
-VITE_AIRTABLE_BASE_ID=your_airtable_base_id_here
+#### Variáveis Necessárias:
+```
+VITE_AIRTABLE_ACCESS_TOKEN=seu_token_aqui
+VITE_AIRTABLE_BASE_ID=sua_base_id_aqui
 VITE_AIRTABLE_TABLE_NAME=protocolo-reset
 ```
+
+#### Como Configurar no Vercel:
+1. **Acesse seu projeto no Vercel Dashboard**
+2. **Vá para Settings > Environment Variables**
+3. **Adicione cada variável:**
+   - Name: `VITE_AIRTABLE_ACCESS_TOKEN`
+   - Value: `patb2YA4KeSzloWA0.764c5698a6cdb5120eb79a3a3607f0f9f89c083781747efd4edb81b1385d7ed5`
+   - Environment: `Production`, `Preview`, `Development` (marque todas)
+   
+   - Name: `VITE_AIRTABLE_BASE_ID`
+   - Value: `apprDbpaU3y7MBH4I`
+   - Environment: `Production`, `Preview`, `Development` (marque todas)
+   
+   - Name: `VITE_AIRTABLE_TABLE_NAME`
+   - Value: `protocolo-reset`
+   - Environment: `Production`, `Preview`, `Development` (marque todas)
+
+4. **Salve as configurações**
+5. **Faça um novo deploy** (ou redeploy) para aplicar as variáveis
 
 ### Passos para Deploy
 
@@ -33,13 +53,17 @@ VITE_AIRTABLE_TABLE_NAME=protocolo-reset
    - Output Directory: `dist`
    - Install Command: `npm install`
 
-3. **Configurar Variáveis de Ambiente**
+3. **⚠️ CONFIGURAR VARIÁVEIS DE AMBIENTE**
+   - Siga as instruções detalhadas acima
    - Na aba "Environment Variables"
-   - Adicione as variáveis listadas acima
+   - Adicione todas as variáveis necessárias
 
 4. **Deploy**
    - Clique em "Deploy"
    - Aguarde o processo de build e deploy
+
+5. **Verificar**
+   - Teste o login na aplicação deployada
 
 ### Configurações Incluídas
 

@@ -20,6 +20,12 @@ const AIRTABLE_ACCESS_TOKEN = import.meta.env.VITE_AIRTABLE_ACCESS_TOKEN;
 const AIRTABLE_BASE_ID = import.meta.env.VITE_AIRTABLE_BASE_ID;
 const AIRTABLE_TABLE_NAME = import.meta.env.VITE_AIRTABLE_TABLE_NAME;
 
+// Debug: Verificar se as variáveis de ambiente estão carregadas
+console.log('🔧 Debug - Variáveis de ambiente:');
+console.log('AIRTABLE_ACCESS_TOKEN:', AIRTABLE_ACCESS_TOKEN ? '✅ Carregado' : '❌ Não encontrado');
+console.log('AIRTABLE_BASE_ID:', AIRTABLE_BASE_ID ? '✅ Carregado' : '❌ Não encontrado');
+console.log('AIRTABLE_TABLE_NAME:', AIRTABLE_TABLE_NAME ? '✅ Carregado' : '❌ Não encontrado');
+
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -36,6 +42,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const login = async (email: string): Promise<boolean> => {
     setIsLoading(true);
     console.log('Tentando fazer login com email:', email);
+    
+    // Verificar se as variáveis de ambiente estão disponíveis
+    if (!AIRTABLE_ACCESS_TOKEN || !AIRTABLE_BASE_ID || !AIRTABLE_TABLE_NAME) {
+      console.error('❌ Erro: Variáveis de ambiente do Airtable não configuradas!');
+      console.error('AIRTABLE_ACCESS_TOKEN:', AIRTABLE_ACCESS_TOKEN ? 'OK' : 'MISSING');
+      console.error('AIRTABLE_BASE_ID:', AIRTABLE_BASE_ID ? 'OK' : 'MISSING');
+      console.error('AIRTABLE_TABLE_NAME:', AIRTABLE_TABLE_NAME ? 'OK' : 'MISSING');
+      setIsLoading(false);
+      return false;
+    }
     
     try {
       // Usar o nome correto da tabela e filtro ajustado
